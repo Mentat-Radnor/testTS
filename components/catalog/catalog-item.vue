@@ -19,9 +19,10 @@
     >
       Купить
     </button>
+
     <div v-else class="card__btn-wrap">
       <button type="button" class="card__btn" @click="saveToBasket()">+</button>
-      {{ count }}
+      {{ catalogItem.count }}
       <button type="button" class="card__btn" @click="removeToBasket()">
         -
       </button>
@@ -42,11 +43,6 @@ export default Vue.extend({
     },
   },
   computed: {
-    count(): Number {
-      return this.basket.filter(
-        (element: any) => element.id === this.catalogItem.id
-      ).length
-    },
     basket(): Array<any> {
       return this.$store.state.basket.basket
     },
@@ -60,12 +56,13 @@ export default Vue.extend({
       }
     },
   },
+
   methods: {
     saveToBasket(): void {
       this.$emit('add-to-basket', this.catalogItem)
     },
     removeToBasket(): void {
-      this.$emit('remove-to-basket', this.catalogItem.id)
+      this.$emit('remove-to-basket', this.catalogItem)
     },
   },
 })

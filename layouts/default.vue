@@ -2,13 +2,23 @@
   <div>
     <base-nav></base-nav>
     <Nuxt />
+    <base-modal v-if="modalIsActive"></base-modal>
   </div>
 </template>
 
 <script>
 import BaseNav from '@/components/base/base-nav.vue'
+import BaseModal from '@/components/base/base-modal.vue'
 export default {
-  components: { 'base-nav': BaseNav },
+  components: { 'base-nav': BaseNav, 'base-modal': BaseModal },
+  computed: {
+    modalIsActive() {
+      return this.$store.state.modal.modalIsActive
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch('basket/loadingLocalStorage')
+  },
 }
 </script>
 

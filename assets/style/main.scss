@@ -1,0 +1,12 @@
+@import '_variables.scss';
+
+.btn {
+  padding: 10px 30px;
+  background: $AccentColor;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    background: $AccentHoverColor;
+  }
+}
